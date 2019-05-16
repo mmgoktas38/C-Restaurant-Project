@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -149,28 +149,37 @@ namespace lokanta
                     if(item is Button)
                     {
                         if (item.Name == "btnMasa" + dr["ID"].ToString() && dr["DURUM"].ToString() == "1")  //gelen masa1 ve durumu 1 ise işlemidir
-
+                            // durum 1 boş demek
+                             // durum 2 dolu demek
                         {
-                            
-                  //       item.BackgroundImage = (System.Drawing.Image)(Properties.Resources.);  //burda hata alıyoz video 12
+                          // bos masa resmi kısım
+                  item.BackgroundImage = (System.Drawing.Image)(Properties.Resources.bosmasa);  //burda hata alıyoz video 12
                         }
-                        else if(item.Name == "btnmasa" + dr["ID"].ToString() && dr["durum"].ToString() == "2")
+                        else if(item.Name == "btnMasa" + dr["ID"].ToString() && dr["DURUM"].ToString() == "2")
                         {
                             cMasalar ms = new cMasalar();
-                            DateTime dt1 = Convert.ToDateTime(ms.SessionSum(2,dr["ID"].ToString()));
-                            DateTime dt2 = DateTime.Now;
-                            string st1 = Convert.ToDateTime(ms.SessionSum(2, dr["ID"].ToString())).ToLongTimeString();
-                            string st2 = DateTime.Now.ToShortDateString();
-                            DateTime t1 = dt1.AddMinutes(DateTime.Parse(st1).TimeOfDay.TotalMinutes);
-                            DateTime t2= dt2.AddMinutes(DateTime.Parse(st2).TimeOfDay.TotalMinutes);
-                            var fark = t2 - t1;
+                          //  DateTime dt1 = Convert.ToDateTime(ms.SessionSum(2,dr["ID"].ToString()));
+                        //    DateTime dt2 = DateTime.Now;
+                       //     string st1 = Convert.ToDateTime(ms.SessionSum(2, dr["ID"].ToString())).ToShortTimeString();
+                       //     string st2 = DateTime.Now.ToShortDateString();
+                       //     DateTime t1 = dt1.AddMinutes(DateTime.Parse(st1).TimeOfDay.TotalMinutes);
+                       //     DateTime t2= dt2.AddMinutes(DateTime.Parse(st2).TimeOfDay.TotalMinutes);
+                       //     var fark = t2 - t1;
 
-                            item.Text = string.Format("{0}{1}{2}",
-                               fark.Days > 0 ? string.Format("{0} gün", fark.Days) : "",
-                              fark.Hours > 0 ? string.Format("{0} Saat", fark.Hours) : "",
-                                 fark.Minutes > 0 ? string.Format("{0} Dakika", fark.Minutes) : "").Trim() + "\n\n\nMasa" + dr["ID"].ToString();
-
-                         //   item.BackgroundImage=(System.Drawing.Image)(Properties.Resources.)  hata varr !!!!!! 13. video
+                      //       item.Text = string.Format("{0}{1}{2}",
+                       //        fark.Days > 0 ? string.Format("{0} gün", fark.Days) : "",
+                       //       fark.Hours > 0 ? string.Format("{0} Saat", fark.Hours) : "",
+                       //          fark.Minutes > 0 ? string.Format("{0} Dakika", fark.Minutes) : "").Trim() + "\n\n\nMasa" + dr["ID"].ToString();
+                            item.BackgroundImage = (System.Drawing.Image)(Properties.Resources.dolumasa);
+                        //    item.BackgroundImage = (System.Drawing.Image)(Properties.Resources.dolumasa);   // dolu resmi
+                        }
+                        else if (item.Name == "btnMasa" + dr["ID"].ToString() && dr["durum"].ToString() == "3")
+                        {
+                            item.BackgroundImage = (System.Drawing.Image)(Properties.Resources.background);  //rezervasyon ama müşteri gelmiş anlamında
+                        }
+                        else if (item.Name == "btnMasa" + dr["ID"].ToString() && dr["durum"].ToString() == "4")
+                        {
+                            item.BackgroundImage = (System.Drawing.Image)(Properties.Resources.bankakasadurumu);  //rezervasyon 
                         }
                     }
                 }
@@ -179,3 +188,4 @@ namespace lokanta
         }
     }
 }
+
